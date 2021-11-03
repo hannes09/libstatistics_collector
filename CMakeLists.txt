@@ -34,12 +34,15 @@ find_package(rcpputils REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(statistics_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(spdlog REQUIRED)
 
 add_library(${PROJECT_NAME}
   src/libstatistics_collector/collector/collector.cpp
   src/libstatistics_collector/collector/generate_statistics_message.cpp
   src/libstatistics_collector/moving_average_statistics/moving_average.cpp
   src/libstatistics_collector/moving_average_statistics/types.cpp)
+
+target_link_libraries(${PROJECT_NAME} spdlog::spdlog)
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE "LIBSTATISTICS_COLLECTOR_BUILDING_LIBRARY")
 
